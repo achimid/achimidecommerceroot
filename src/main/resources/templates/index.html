@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Bootstrap Example</title>
     <meta charset="utf-8"/>
@@ -23,6 +23,12 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <style>
+        .cls-img{
+
+        }
+    </style>
 </head>
 <body>
 
@@ -38,19 +44,19 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Start Bootstrap</a>
+            <a class="navbar-brand" href="#">Achimid Ecommerce</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a href="#">About</a>
                 </li>
                 <li>
-                    <a href="#">Services</a>
+                    <a href="http://achimidapi.tk/">API</a>
                 </li>
                 <li>
-                    <a href="#">Contact</a>
+                    <a href="http://achimidadm.tk/">Admin</a>
                 </li>
             </ul>
         </div>
@@ -108,14 +114,15 @@
 
             <div class="row">
 
-                <div class="col-sm-4 col-lg-4 col-md-4">
+                <div class="col-sm-6 col-lg-3 col-md-3" th:each="product : ${products}">
                     <div class="thumbnail">
-                        <img src="http://placehold.it/320x150" alt=""/>
+                        <img th:if="${not #strings.isEmpty(product.url)}" th:src="${product.url}" alt="Image of Product" class="cls-img"/>
+                        <img th:if="${#strings.isEmpty(product.url)}" src="http://placehold.it/320x150" alt="Image of Product" class="cls-img"/>
                         <div class="caption">
-                            <h4 class="pull-right">$24.99</h4>
-                            <h4><a href="#">First Product</a>
+                            <h4 class="pull-right" th:text="${'$' + #numbers.formatDecimal(product.priceSale, 0, 'DEFAULT', 2, 'DEFAULT')}">$24.99</h4>
+                            <h4><a href="@{/products/${product.id}}" th:text="${product.name}">First Product</a>
                             </h4>
-                            <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+                            <p th:text="${product.description}">See more snippets like this online store item at </p>
                         </div>
                         <div class="ratings">
                             <p class="pull-right">15 reviews</p>
@@ -128,101 +135,6 @@
                             </p>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-sm-4 col-lg-4 col-md-4">
-                    <div class="thumbnail">
-                        <img src="http://placehold.it/320x150" alt=""/>
-                        <div class="caption">
-                            <h4 class="pull-right">$64.99</h4>
-                            <h4><a href="#">Second Product</a>
-                            </h4>
-                            <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                        <div class="ratings">
-                            <p class="pull-right">12 reviews</p>
-                            <p>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-4 col-lg-4 col-md-4">
-                    <div class="thumbnail">
-                        <img src="http://placehold.it/320x150" alt=""/>
-                        <div class="caption">
-                            <h4 class="pull-right">$74.99</h4>
-                            <h4><a href="#">Third Product</a>
-                            </h4>
-                            <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                        <div class="ratings">
-                            <p class="pull-right">31 reviews</p>
-                            <p>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-4 col-lg-4 col-md-4">
-                    <div class="thumbnail">
-                        <img src="http://placehold.it/320x150" alt=""/>
-                        <div class="caption">
-                            <h4 class="pull-right">$84.99</h4>
-                            <h4><a href="#">Fourth Product</a>
-                            </h4>
-                            <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                        <div class="ratings">
-                            <p class="pull-right">6 reviews</p>
-                            <p>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-4 col-lg-4 col-md-4">
-                    <div class="thumbnail">
-                        <img src="http://placehold.it/320x150" alt=""/>
-                        <div class="caption">
-                            <h4 class="pull-right">$94.99</h4>
-                            <h4><a href="#">Fifth Product</a>
-                            </h4>
-                            <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                        <div class="ratings">
-                            <p class="pull-right">18 reviews</p>
-                            <p>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-4 col-lg-4 col-md-4">
-                    <h4><a href="#">Like this template?</a>
-                    </h4>
-                    <p>If you like this template, then check out <a target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this tutorial</a> on how to build a working review system for your online store!</p>
-                    <a class="btn btn-primary" target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">View Tutorial</a>
                 </div>
 
             </div>
