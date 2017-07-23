@@ -3,7 +3,6 @@ package br.com.ecommerce.bff.root.ecommerceroot.dto;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.util.Locale;
 
 /**
  * Created by Lourran on 22/07/2017.
@@ -17,6 +16,6 @@ public class ProductDTO {
     private BigDecimal priceCost;
     private String url;
     private String description;
-    private Locale.Category category;
+    private CategoryDTO category;
 
 }
